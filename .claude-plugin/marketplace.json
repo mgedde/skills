@@ -1,17 +1,17 @@
 {
-  "name": "personal-skills",
+  "name": "mg",
   "owner": {
     "name": "Mads"
   },
   "metadata": {
     "description": "My personal skills collection",
-    "version": "1.1.0"
+    "version": "1.2.0"
   },
   "plugins": [
     {
-      "name": "personal-skills",
+      "name": "mg",
       "description": "Personal collection of Claude Code skills",
-      "version": "1.1.0",
+      "version": "1.2.0",
       "source": "./"
     }
   ]
