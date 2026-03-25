@@ -1,0 +1,38 @@
+{
+  "name": "mads-skills",
+  "owner": {
+    "name": "Mads"
+  },
+  "metadata": {
+    "description": "My personal skills collection",
+    "version": "1.0.0"
+  },
+  "plugins": [
+    {
+      "name": "grill-me",
+      "description": "Interview the user relentlessly about a plan or design until reaching shared understanding, resolving each branch of the decision tree",
+      "version": "1.0.0",
+      "source": "./grill-me",
+      "strict": false,
+      "skills": [
+        {
+          "name": "grill-me",
+          "path": "./SKILL.md"
+        }
+      ]
+    },
+    {
+      "name": "git-guardrails-claude-code",
+      "description": "Set up Claude Code hooks to block dangerous git commands (push, reset --hard, clean, branch -D, etc.) before they execute",
+      "version": "1.0.0",
+      "source": "./git-guardrails-claude-code",
+      "strict": false,
+      "skills": [
+        {
+          "name": "git-guardrails-claude-code",
+          "path": "./SKILL.md"
+        }
+      ]
+    }
+  ]
+}
