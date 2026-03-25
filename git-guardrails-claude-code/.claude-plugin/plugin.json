@@ -1,0 +1,7 @@
+{
+  "name": "git-guardrails-claude-code",
+  "description": "Set up Claude Code hooks to block dangerous git commands (push, reset --hard, clean, branch -D, etc.) before they execute",
+  "author": {
+    "name": "Mads"
+  }
+}
