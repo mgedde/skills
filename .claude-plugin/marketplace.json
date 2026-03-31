@@ -5,13 +5,13 @@
   },
   "metadata": {
     "description": "My personal skills collection",
-    "version": "1.5.0"
+    "version": "1.5.1"
   },
   "plugins": [
     {
       "name": "mg",
       "description": "Personal collection of Claude Code skills",
-      "version": "1.5.0",
+      "version": "1.5.1",
       "source": "./"
     }
   ]
