@@ -1,117 +1,44 @@
-# Agent Skills
+# mg — Personal Skills Plugin
 
-A collection of agent skills that extend capabilities across planning, development, and tooling.
+A collection of Claude Code skills for planning, development workflow, and tooling.
 
-## Planning & Design
+Originally forked from [mattpocock/skills](https://github.com/mattpocock/skills) — the **grill-me** and **git-guardrails** skills are based on his work.
 
-These skills help you think through problems before writing code.
+## Installation
 
-- **write-a-prd** — Create a PRD through an interactive interview, codebase exploration, and module design. Filed as a GitHub issue.
+This plugin is installed via a custom marketplace. Add the following to your Claude Code settings (`~/.claude/settings.json`):
 
-  ```
-  npx skills@latest add mattpocock/skills/write-a-prd
-  ```
+```json
+{
+  "plugins": {
+    "marketplaces": [
+      "https://raw.githubusercontent.com/mgedde/skills/main/.claude-plugin/marketplace.json"
+    ]
+  }
+}
+```
 
-- **prd-to-plan** — Turn a PRD into a multi-phase implementation plan using tracer-bullet vertical slices.
+Then install the plugin:
 
-  ```
-  npx skills@latest add mattpocock/skills/prd-to-plan
-  ```
+```
+/plugin marketplace update
+/plugin install mg
+```
 
-- **prd-to-issues** — Break a PRD into independently-grabbable GitHub issues using vertical slices.
+## Skills
 
-  ```
-  npx skills@latest add mattpocock/skills/prd-to-issues
-  ```
+### grill-me
 
-- **grill-me** — Get relentlessly interviewed about a plan or design until every branch of the decision tree is resolved.
+Interview the user relentlessly about a plan or design until reaching shared understanding.
 
-  ```
-  npx skills@latest add mattpocock/skills/grill-me
-  ```
+### git-guardrails-claude-code
 
-- **design-an-interface** — Generate multiple radically different interface designs for a module using parallel sub-agents.
+Set up Claude Code hooks to block dangerous git commands (force-push, reset --hard, clean, branch -D, etc.) before they execute.
 
-  ```
-  npx skills@latest add mattpocock/skills/design-an-interface
-  ```
+### git-feature-branching
 
-- **request-refactor-plan** — Create a detailed refactor plan with tiny commits via user interview, then file it as a GitHub issue.
+Merge-based git feature branching workflow. Covers branch naming, developing on a feature branch, and merging back to trunk via PR or direct merge.
 
-  ```
-  npx skills@latest add mattpocock/skills/request-refactor-plan
-  ```
+### bump-version
 
-## Development
-
-These skills help you write, refactor, and fix code.
-
-- **tdd** — Test-driven development with a red-green-refactor loop. Builds features or fixes bugs one vertical slice at a time.
-
-  ```
-  npx skills@latest add mattpocock/skills/tdd
-  ```
-
-- **triage-issue** — Investigate a bug by exploring the codebase, identify the root cause, and file a GitHub issue with a TDD-based fix plan.
-
-  ```
-  npx skills@latest add mattpocock/skills/triage-issue
-  ```
-
-- **improve-codebase-architecture** — Explore a codebase for architectural improvement opportunities, focusing on deepening shallow modules and improving testability.
-
-  ```
-  npx skills@latest add mattpocock/skills/improve-codebase-architecture
-  ```
-
-- **migrate-to-shoehorn** — Migrate test files from `as` type assertions to @total-typescript/shoehorn.
-
-  ```
-  npx skills@latest add mattpocock/skills/migrate-to-shoehorn
-  ```
-
-- **scaffold-exercises** — Create exercise directory structures with sections, problems, solutions, and explainers.
-
-  ```
-  npx skills@latest add mattpocock/skills/scaffold-exercises
-  ```
-
-## Tooling & Setup
-
-- **setup-pre-commit** — Set up Husky pre-commit hooks with lint-staged, Prettier, type checking, and tests.
-
-  ```
-  npx skills@latest add mattpocock/skills/setup-pre-commit
-  ```
-
-- **git-guardrails-claude-code** — Set up Claude Code hooks to block dangerous git commands (push, reset --hard, clean, etc.) before they execute.
-
-  ```
-  npx skills@latest add mattpocock/skills/git-guardrails-claude-code
-  ```
-
-## Writing & Knowledge
-
-- **write-a-skill** — Create new skills with proper structure, progressive disclosure, and bundled resources.
-
-  ```
-  npx skills@latest add mattpocock/skills/write-a-skill
-  ```
-
-- **edit-article** — Edit and improve articles by restructuring sections, improving clarity, and tightening prose.
-
-  ```
-  npx skills@latest add mattpocock/skills/edit-article
-  ```
-
-- **ubiquitous-language** — Extract a DDD-style ubiquitous language glossary from the current conversation.
-
-  ```
-  npx skills@latest add mattpocock/skills/ubiquitous-language
-  ```
-
-- **obsidian-vault** — Search, create, and manage notes in an Obsidian vault with wikilinks and index notes.
-
-  ```
-  npx skills@latest add mattpocock/skills/obsidian-vault
-  ```
+Bumps the plugin version in `marketplace.json` after committing changes to this repo. Used internally before pushing.
