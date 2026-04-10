@@ -44,7 +44,13 @@ Commit freely to your branch. Push to remote as needed.
    git merge <TRUNK>
    ```
 2. **Fix merge conflicts** if any, then commit.
-3. **Check if TRUNK is protected:**
+3. **Clean up WIP docs** — delete any working documents (plans, specs) that were used during development. These are fine on feature branches but must not reach TRUNK.
+   ```bash
+   find docs -type f \( -path "*/plans/*" -o -path "*/specs/*" \) -delete 2>/dev/null
+   git add -A && git diff --cached --quiet || git commit -m "Remove WIP plans/specs before merge"
+   ```
+   Verify none remain: `git diff --name-only <TRUNK>` should show no plan/spec files.
+4. **Check if TRUNK is protected:**
    - **Protected** (`main`, `develop`): Open a PR from your branch towards TRUNK.
    - **Not protected**: Merge your branch into TRUNK directly:
      ```bash
@@ -52,10 +58,11 @@ Commit freely to your branch. Push to remote as needed.
      git merge <your-branch>
      git push
      ```
-4. **If push fails** because TRUNK moved while you were merging — do NOT force push. Go back to step 1 and merge TRUNK into your branch again.
+5. **If push fails** because TRUNK moved while you were merging — do NOT force push. Go back to step 1 and merge TRUNK into your branch again.
 
 ## Rules
 
 - **This workflow uses merge only** — no rebase.
 - **Never force push.** If TRUNK has moved, merge it in again.
 - **Always merge TRUNK into your branch first** before merging back or opening a PR. This keeps conflict resolution on your branch, not on TRUNK.
+- **WIP docs stay on branches, not TRUNK.** Files under `docs/**/plans/` and `docs/**/specs/` are working documents for AI context during development. Keep them on feature branches freely, but delete them before merging or opening a PR.
