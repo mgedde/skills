@@ -6,6 +6,8 @@ description: Use when a customer support request, feature request, or chat quote
 
 Turn a customer support request (chat quote, email, ticket) into a well-grounded GitHub issue, or a comment on an existing one.
 
+**Local config:** org-specific details (target repo, project board, label taxonomy, issue types) live in `~/.claude/prd-issue.local.md` — read it before starting. If the file is missing, ask the user for the specifics instead of guessing.
+
 ## Workflow
 
 ### 1. Check for existing issues FIRST
@@ -36,13 +38,18 @@ Write the body to a scratch file and use `--body-file` (never inline multi-parag
 - **Open questions (for the PRD)** — boundary semantics, UI, serialization/migration impact, scope boundaries, related prior art.
 - **Source** — where the request came from.
 
-### 4. Create, label, report
+### 4. Create, classify, report
 
 ```bash
-gh issue create --repo <owner>/<repo> --title "<title>" --label ai-prd-ready --body-file <file>
+gh issue create --repo <owner>/<repo> --title "<title>" --body-file <file>
 ```
 
-- Label `ai-prd-ready` = ready for the AI PRD/specing process. Verify the label exists first (`gh label list --repo <owner>/<repo> --search ai`). When commenting on an existing issue instead, add the label there (`gh issue edit <n> --add-label ai-prd-ready`).
+Then classify and file it (specifics in the local config):
+
+- **Product-area labels** — apply the matching area label(s) from the local config's taxonomy when the issue clearly relates to a specific part of the product; skip when cross-cutting or ambiguous. Verify labels exist (`gh label list --repo <owner>/<repo> --search <term>`).
+- **Issue type** — set the type (e.g. Bug/Feature) when it clearly fits, using the command in the local config.
+- **Project board** — add the issue to the triage board per the local config.
+- **Do NOT add `ai-prd-ready`** — the user adds it manually after reviewing the issue. Same for comments on existing issues: never add or change that label.
 - Report the issue/comment URL back.
 
 ## Titles
@@ -62,4 +69,6 @@ When the user dictates a comment ("add a comment: ..."), post it near-verbatim v
 | Ungrounded issue | Cite actual files/types; confirm the gap in code |
 | Attaching images via CLI | Not possible — leave a paste placeholder |
 | Inline multi-line body | Write to scratch file, use `--body-file` |
-| Forgetting the label | `ai-prd-ready` on new AND existing issues touched |
+| Adding `ai-prd-ready` | Never — that's the user's manual sign-off |
+| Skipping classification | Product-area label, issue type, and project board per local config |
+| Hardcoding org specifics here | They live in `~/.claude/prd-issue.local.md`, not this public skill |
