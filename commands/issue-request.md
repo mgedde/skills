@@ -10,6 +10,12 @@ Turn a customer support request (chat quote, email, ticket) into a well-grounded
 
 **Related skill:** a request for a *specific template* to add to the content library is `issue-content-template`, not this one.
 
+## Clarifying questions
+
+Default to writing the issue. When something load-bearing is genuinely unclear — which behaviour the customer actually means, how far the scope reaches, whether this is one issue or several — ask before writing, **in plain chat, never with the question tool, and one question at a time**: ask it, wait for the answer, then decide whether the next one is still needed. Don't stack questions into a list or a multiple-choice prompt.
+
+Don't ask what the code, the existing issues, or the local config can answer, and don't ask permission to create the issue — create it and report the URL. Real unknowns that don't block writing belong in the issue's **Open questions (for the PRD)** section instead of in chat.
+
 ## Workflow
 
 ### 1. Check for existing issues FIRST
@@ -88,6 +94,8 @@ When the user dictates a comment ("add a comment: ..."), post it near-verbatim v
 |---------|-----|
 | Creating a duplicate | Search multiple phrasings before creating; comment instead |
 | Paraphrasing the customer | Quote verbatim in blockquotes |
+| Batching clarifying questions | One at a time in plain chat — never the question tool |
+| Asking permission to create the issue | Don't — create it and report the URL |
 | Ungrounded issue | Cite actual files/types; confirm the gap in code |
 | Leaving a paste placeholder for images | `--attach <path>` works now; never a public host; delete the temp file |
 | Inline multi-line body | Write to scratch file, use `--body-file` |
