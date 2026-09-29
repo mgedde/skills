@@ -38,8 +38,8 @@ Find the relevant types/files and confirm the gap is real. Use targeted searches
 
 Write the body to a scratch file and use `--body-file` (never inline multi-paragraph bodies). Structure:
 
+- **Screenshot** (when the request comes with one) — preferably the body's first line, above Background, so the reader sees what the customer saw before reading about it. Attached via `--attach`; see [Images](#images) for how to pin it at the top rather than letting gh dump it at the bottom.
 - **Background** — verbatim customer quotes as blockquotes, with date and channel. Never paraphrase away the customer's own words; include clarifying follow-up quotes if the request was misunderstood initially.
-- Screenshots go in via `--attach` — see [Images](#images) below.
 - **Problem** — what's missing today, grounded in code. Explicitly distinguish from adjacent existing features when confusion is likely (e.g. connected scatter ≠ line chart).
 - **Desired capability** — the envisioned behavior/modes, generalized from the customer's ask.
 - **Current code context** — file paths, relevant types, existing concepts to build on.
@@ -65,15 +65,29 @@ Then classify and file it (specifics in the local config):
 
 ## Images
 
-Screenshots are attached by the CLI, not pasted afterwards. Save the image to a
-temporary local file and attach it:
+Screenshots are attached by the CLI, not pasted afterwards, and they
+preferably sit towards the **top** of the issue, above Background — a reader
+should see what the customer saw before reading the quotes about it.
 
-```bash
-gh issue create  --repo <owner>/<repo> --attach <image-path> ...
-gh issue comment <n> --repo <owner>/<repo> --attach <image-path>
+`gh` appends an attachment to the end of the body *unless* the body already
+references that file by its local path, in which case the reference is
+rewritten in place. So reference it yourself, as the body's first line:
+
+```markdown
+![Customer's chart with the missing connecting lines](./screenshot.png)
 ```
 
-The format is `<file>#<alt text>` if you want alt text. Requires a recent gh
+Save the image next to the body scratch file and pass the identical path to
+`--attach` — if the two strings don't match, gh uploads the image and dumps it
+at the bottom of the issue instead:
+
+```bash
+gh issue create  --repo <owner>/<repo> --body-file <file> --attach ./screenshot.png ...
+gh issue comment <n> --repo <owner>/<repo> --attach ./screenshot.png
+```
+
+Alt text written in the body wins; the `<file>#<alt text>` form on `--attach`
+only applies when the body doesn't reference the file. Requires a recent gh
 (confirmed on 2.100.0).
 
 - Always target the private repo with `--repo <owner>/<repo>`.
@@ -98,6 +112,7 @@ When the user dictates a comment ("add a comment: ..."), post it near-verbatim v
 | Asking permission to create the issue | Don't — create it and report the URL |
 | Ungrounded issue | Cite actual files/types; confirm the gap in code |
 | Leaving a paste placeholder for images | `--attach <path>` works now; never a public host; delete the temp file |
+| Screenshot stuck at the bottom | Reference the same path in the body's first line, above Background |
 | Inline multi-line body | Write to scratch file, use `--body-file` |
 | Adding `ai-prd-ready` | Never — that's the user's manual sign-off |
 | Skipping classification | Product-area label, issue type, and project board per local config |
