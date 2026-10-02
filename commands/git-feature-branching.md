@@ -51,7 +51,7 @@ Commit freely to your branch. Push to remote as needed.
    ```
    Verify none remain: `git diff --name-only <TRUNK>` should show no plan/spec files.
 4. **Check if TRUNK is protected:**
-   - **Protected** (`main`, `develop`): Open a PR from your branch towards TRUNK.
+   - **Protected** (`main`, `develop`): Open a PR from your branch towards TRUNK. Write the body with `mg:pr`.
    - **Not protected**: Merge your branch into TRUNK directly:
      ```bash
      git checkout <TRUNK>
