@@ -117,4 +117,6 @@ The **blast radius** is the potential scope of impact. Consider all consumers: l
 
 ## Creating the PR
 
-When the body is ready, open the PR with `gh pr create` and pass the body via a heredoc or `--body-file` so Markdown and code fences survive intact. Follow `mg:git-feature-branching` for the branch and merge side of things.
+When the body is ready, open the PR with `gh pr create --draft` and pass the body via a heredoc or `--body-file` so Markdown and code fences survive intact. Follow `mg:git-feature-branching` for the branch and merge side of things.
+
+**Always open PRs as drafts.** Drafts are lightweight and don't trigger CI runs that cost money before the PR is ready. Leave marking it ready for review (`gh pr ready`) to the user unless they ask you to do it.
