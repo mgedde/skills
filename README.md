@@ -31,6 +31,10 @@ Then install the plugin:
 
 Interview the user relentlessly about a plan or design until reaching shared understanding.
 
+### one-at-a-time
+
+The house rule for asking the user anything: one question per message, in plain chat, settled before the next one. Never the ask-user-question UI or a multiple-choice prompt. A vague answer gets a concrete proposal to confirm, not a silent default. Triggers on its own whenever the agent is about to ask something; invoke it by hand when a batch of questions came through anyway and you want them re-asked properly.
+
 ### git-guardrails-claude-code
 
 Set up Claude Code hooks to block dangerous git commands (force-push, reset --hard, clean, branch -D, etc.) before they execute.

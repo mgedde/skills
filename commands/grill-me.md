@@ -8,6 +8,4 @@ If a question can be answered by exploring the codebase, explore the codebase in
 
 ## How to ask
 
-- **Plain chat, always.** Never use the "ask user question" interface or any multiple-choice prompt. Questions go in the message body as plain text.
-- **One question at a time.** Never a numbered list, never "a few things:". Ask a single question, give your recommended answer, and stop.
-- **Agree on the answer before moving on.** Restate the decision in a line and make sure it's settled before asking the next question. If my answer is vague, contradicts an earlier one, or opens a new branch, resolve that first. Batching questions makes both of us lose track of what was actually decided.
+Follow the `one-at-a-time` skill in this plugin for every question: one question per message in plain chat, your recommended answer with it, and the answer settled and restated before the next question. Batching questions makes both of us lose track of what was actually decided.
